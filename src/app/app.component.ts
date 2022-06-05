@@ -1,4 +1,6 @@
 import { Component } from '@angular/core'
+import { TransportationService } from './transportation.service'
+import { Todos } from './todos'
 
 @Component({
   selector: 'app-root',
@@ -6,20 +8,22 @@ import { Component } from '@angular/core'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'todo-angular-app'
-  todos: any = []
-  addTodo(todo: string) {
-    if (todo !== "") {
-      this.todos.push(todo)
-    } else {
-      alert('Field is empty!')
-    }
+
+  todos: Todos[]
+
+  constructor(private transportationService: TransportationService) {
+    this.todos = this.transportationService.getTodos()
   }
-  deleteTodo(todo: string) {
-    for (let i = 0; i <= this.todos.length; i++) {
-      if (todo == this.todos[i]) {
-        this.todos.splice(i, 1)
-      }
-    }
+
+  addTodo(name: string, text: string) {
+    const newDate: Date = new Date()
+    const dateTime: string = newDate.getDate() + '.' + (newDate.getMonth() + 1) + '.' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds()
+    const newTodo: Todos = { id: this.transportationService.getId(), name: name, text: text, date: dateTime }
+    this.transportationService.addTodo(newTodo)
   }
+
+  deleteTodo(id: number) {
+    this.transportationService.deleteTodo(id)
+  }
+
 }
