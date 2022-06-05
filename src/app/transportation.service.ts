@@ -22,22 +22,12 @@ export class TransportationService {
         }
     }
 
-    deleteTodo(id: number) {
-        for (let i = 0; i <= this.todos.length; i++) {
-            if (id == this.todos[i].id) {
-                this.todos.splice(i, 1)
-            }
-        }
+    deleteTodo(i: number) {
+        this.todos.splice(i, 1)
     }
 
     getTodos() {
         return this.todos
-    }
-
-    getId() {
-        const array = new Uint32Array(1);
-        self.crypto.getRandomValues(array);
-        return array[0];
     }
 
     getDate() {

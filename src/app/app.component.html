@@ -1,6 +1,6 @@
 <div class="container">
   <div class="py-5">
-    <h1 class="text-center text-primary">Todo App</h1>
+    <h1 class="text-center text-primary">ToDo App</h1>
     <form class="pt-4">
       <div class="form-floating mb-3">
         <input #name type="text" class="form-control" id="floatingName" placeholder="Name..." required>
@@ -18,16 +18,16 @@
       </div>
     </form>
     <div class="row justify-content-center">
-      <div *ngFor="let todo of todos" class="card m-2 a-0" style="width: 18rem;">
+      <div *ngFor="let todo of todos; let i=index" class="card m-2 a-0" style="width: 18rem;">
         <div class="card-body">
           <h4 class="card-title">{{todo.name}}</h4>
           <p class="card-text">{{todo.text}}</p>
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col-9">
               <small>{{todo.date}}</small>
             </div>
             <div class="col-3">
-              <button class="btn bg-light p-0" (click)="deleteTodo(todo.id)">
+              <button class="btn bg-light p-0" (click)="deleteTodo(i)">
                 <i class="btn material-icons">delete</i>
               </button>
             </div>
@@ -37,3 +37,6 @@
     </div>
   </div>
 </div>
+<footer class="text-center">
+  <a class="text-dark" href="https://findsaid.github.io/" target="_blank">© findsaid</a>
+</footer>

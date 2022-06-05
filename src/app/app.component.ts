@@ -18,12 +18,12 @@ export class AppComponent {
   addTodo(name: string, text: string) {
     const newDate: Date = new Date()
     const dateTime: string = newDate.getDate() + '.' + (newDate.getMonth() + 1) + '.' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds()
-    const newTodo: Todos = { id: this.transportationService.getId(), name: name, text: text, date: dateTime }
+    const newTodo: Todos = { name: name, text: text, date: dateTime }
     this.transportationService.addTodo(newTodo)
   }
 
-  deleteTodo(id: number) {
-    this.transportationService.deleteTodo(id)
+  deleteTodo(i: number) {
+    this.transportationService.deleteTodo(i)
   }
 
 }
